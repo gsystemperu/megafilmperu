@@ -272,7 +272,7 @@ $di->set('router',function() {
 
 
      //@Mantenimientos : Tablas Principales
-     $router->add('/agregar_unidad_medida', array('controller'=>'cotizacion','action'=>'unidadmedidaactualizar'));
+     $router->add('/agregar_unidad_medida', array('controller'=>'mantenimiento','action'=>'unidadmedidaactualizar'));
      $router->add('/agregar_forma_pago', array('controller'=>'cotizacion','action'=>'formapagoactualizar'));
      $router->add('/agregar_modo_entrega', array('controller'=>'cotizacion','action'=>'modoentregaactualizar'));
      $router->add('/agregar_vendedor', array('controller'=>'cotizacion','action'=>'vendedoractualizar'));
