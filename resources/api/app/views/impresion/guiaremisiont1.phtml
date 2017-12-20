@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+
+@page {
+  size: A4;
+  margin: 5px;
+  letter-spacing: 5pt
+}
+
+@media print {
+  html, body {
+    width: 330mm;
+    height: 240mm;
+    border: solid 0px;
+    letter-spacing: 5pt
+  }/* ... the rest of the rules ... */
+}
+
+.documento_bordes{
+    padding: 200px 30px 5px 30px;/* 150px */
+    font-size: 11px;
+
+  }
+  .documento_superior{
+    height: 100px;
+
+  }
+  .documento_espacios_persona {
+    padding-top: 0px;
+    padding-left: 150px;
+    text-align:left;
+  }
+  .documento_fecha_espacios{
+    padding-left: 70%;
+  }
+  .documento_row_cantidad{
+    width: 120px;
+    padding-left: 90px;
+    padding-top: 5px;
+  }
+  .documento_row_descripcion{
+    width: 1200px;
+    padding-left: 9px;
+    padding-top: 5px;
+  }
+  .documento_row_pu{
+    width: 130px;
+    padding-left: 9px;
+    padding-top: 5px;
+  }
+  .documento_espacios_tabla {
+    padding-top: 10px;
+    width: 100%;
+  }
+
+body{
+  border:solid 0px red;
+}
+
+</style>
+  <!--<link rel='stylesheet' type='text/css' href='css/style.css' /> -->
+</head>
+<body>
+
+<body class="documento_bordes">
+
+        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;letter-spacing: 3pt;">
+            <?php
+            $incluyeigv=0;
+                foreach ($cliente->data as $row)
+                  {
+                    $fechaemision    = $row->fechaemision ;
+                    $ppartida   = $row->puntopartida;
+                    $pllegada   = $row->puntollegada;
+                    $fechatras  = $row->fechatraslado;
+                    $razondesti = $row->razonsocialdestinatario;
+                    $rucdesti = $row->rucdestinatario;
+                    $dnidesti = $row->dnidestinatario;
+                    $numeroplaca = $row->marcanumeroplaca;
+                    $numeroconst = $row->numeroconstanciainscripcion;
+                    $numerolice = $row->numerolicenciaconductor;
+                    $emptrans = $row->empresatransporterazonsocial;
+                    $emptransruc = $row->empresatransporteruc;
+                    $idmotivo = $row->idmotivotranslado;
+                    $tipodoc = $row->abreviatura;
+                    $seriedoc = $row->seriedocumento;
+                                   }
+
+            ?>
+            <tr>
+                  <td style="width:100%;">
+                  <table style="width:100%;">
+                    <tr>
+                                  <td style="width:55%;">
+
+                                  </td>
+                                  <td style="width:50%;">
+                                      <table border="0" style="width:100%;" style="height:10px;" cellpadding="0" cellspacing="0">
+                                          <tr style="height:30px;">
+                                            <td><?php echo  strtoupper( $ppartida ); ?></td>
+                                          </tr>
+                                          <tr style="height:50px;">
+                                          <td><?php echo strtoupper( $pllegada ); ?></td>
+                                            
+                                          </tr>
+                                      </table>
+
+                                  </td>
+                              </tr>
+                    </table>
+                  </td>
+                  
+            </tr>
+            <tr >
+                <td>
+                    <table border="0" style="width:100%;" cellpadding="0" cellspacing="0" >
+                            
+                              <tr>
+                                  <td  style="height:10px;padding-left:70px;">
+                                    <?php echo  $fechaemision;  ?>
+                                  </td>
+                                  <td style="height:10px;padding-left:150px;">
+                                     <?php echo $razondesti; ?>
+                                  </td>
+                              </tr>
+                              <tr  style="text-align:left;height:25px;">
+                                  <td  style="height:10px;padding-left:70px;">
+                                    <?php echo  $fechatras;  ?>
+                                  </td>
+                                  <td>
+                                    <table border="0" cellspacing="0" cellspacing="0" style="width:100%;">
+                                      <tr>
+                                        <td><?php echo strtoupper( $pllegada );  ?></td>
+                                        <td style="text-align:right;"><?php echo $rucdesti; ?></td>
+                                     <tr>
+                                    <table>
+                                  </td>
+                              </tr>
+                            
+                            </tr>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                  <td style="height:20px;" colspan="2"></td>
+            </tr>
+            <tr>
+                
+                <table border="0" style="width:100%;" cellpadding="0" cellspacing="0" >
+                               <tr>
+                                  <td style="width:40%;">
+                                    <table border="0" style="width:100%;">
+                                      <tr >
+                                        <td style="padding-left:100px;"><?php echo $numeroplaca; ?></td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding-left:100px;"><?php echo $numeroconst; ?></td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding-left:100px;"><?php echo $numerolice; ?></td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                  <td style="width:60%;" >
+                                  <table style="width:100%;">
+                                      <tr>
+                                        <td style="padding-left:130px;"><?php echo $emptrans; ?></td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding-left:130px;"><?php echo "aaaaaaa"; ?></td>
+                                      </tr>
+                                      <tr>
+                                        <td style="padding-left:130px;"><?php echo $emptransruc; ?></td>
+                                      </tr>
+                                    </table>
+
+                                  </td>
+                              </tr>
+                  </table>
+                </td>
+            </tr>
+            
+            <tr>
+            <td colspan="2" style="width:100%;">
+                    <table border="0" style="width:100%;font-size:10px;">
+                    <?php
+                          $item=0;
+                          $total=0;
+                          $subtotal=0;
+                          $igv = 0;
+                          foreach ((array)$detalle->data as $row)
+                            { ?>
+                                <tr>
+                                  <td style="width:50px;text-align:center;height:20px;"><?php echo number_format($row->cantidad, 2, '.', ' ');   ?></td>
+                                  <td style="width:80px;text-align:left;height:20px;"><?php echo $row->codigoproducto;  ?></td>
+                                  <td style="width:300px;text-align:left;height:20px;"><?php echo $row->nombre;  ?></td>
+                                </tr>
+
+                          <?php
+                           // $total = $total + $row->total;
+
+                            $item = $item+1;
+                            }
+
+                            if($item < 20){
+                                for($i=$item;$i<20;$i++){
+                            ?>
+                                <tr>
+                                  <td style="width:60px;text-align:center;height:20px;"> </td>
+                                  <td style="width:80px;text-align:left;height:20px;"> </td>
+                                  <td style="width:200px;text-align:left;height:20px;"> </td>
+                                </tr>
+
+                            <?php
+                                  $item = $item + 1;
+                                }
+                            }
+
+                              ?>
+                              <tr>
+                                <td colspan="3" style="width:60px;text-align:center;height:25px;">
+                                    <table style="width:100%;">
+                                      <td><?php if(trim($tipodoc)=='F') echo $seriedoc;  ?></td>
+                                      <td><?php if(trim($tipodoc)=='B') echo $seriedoc;  ?></td>
+                                      
+                                    </table>
+                                </td>
+                              </tr>
+                            
+                           
+                   </table>
+            </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+<script>
+   /*jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
+   jsPrintSetup.setOption('marginTop', 5);
+   jsPrintSetup.setOption('marginBottom', 5);
+   jsPrintSetup.setOption('marginLeft', 5);
+   jsPrintSetup.setOption('marginRight', 5);*/
+   // set page header
+   //jsPrintSetup.setOption('headerStrLeft', 'Molino Avila');
+   //jsPrintSetup.setOption('headerStrCenter', '');
+   //jsPrintSetup.setOption('headerStrRight', '&PT');
+   // set empty page footer
+   //jsPrintSetup.setOption('footerStrLeft', '');
+   //jsPrintSetup.setOption('footerStrCenter', '');
+   //jsPrintSetup.setOption('footerStrRight', '');
+
+   // clears user preferences always silent print value
+   // to enable using 'printSilent' option
+   jsPrintSetup.clearSilentPrint();
+   jsPrintSetup.setOption('printSilent', 1);
+   jsPrintSetup.print();
+</script>

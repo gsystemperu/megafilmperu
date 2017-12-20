@@ -1,0 +1,36 @@
+.cuarto {
+  background-color: #F7F7F9;
+  text-align: center;
+  vertical-align: bottom;
+  border: 2px solid #D0D0D0;
+  padding: 3px;
+  margin: 2px;
+  float: left;
+  display: inherit;
+  overflow: hidden;
+  font-size:9px;
+  height: 150px;
+  width: 210px;
+  text-align: left;
+}
+
+.cuarto:hover{
+   border:3px solid #827686;
+}
+
+.productoprecio{
+  background-color: rgb(107, 96, 107);  /*#827686;*/
+  font-size: 13px;
+  color: #ffffff;
+  /*font-weight: bold;*/
+  /*height:  50px;*/
+  /*padding: 5px 5px 5px 5px*/
+  padding: 0px 5px 0px 5px
+}
+
+.productonombre{
+  font-size: 12px;
+  width:  300px;
+  font-family: "courier", Georgia, Serif;
+  text-align: left;
+}

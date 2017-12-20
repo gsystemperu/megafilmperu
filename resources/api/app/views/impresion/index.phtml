@@ -1,0 +1,233 @@
+<script>
+  jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
+   jsPrintSetup.setOption('marginTop', 5);
+   jsPrintSetup.setOption('marginBottom', 5);
+   jsPrintSetup.setOption('marginLeft', 5);
+   jsPrintSetup.setOption('marginRight', 5);
+   // set page header
+   //jsPrintSetup.setOption('headerStrLeft', 'Molino Avila');
+   //jsPrintSetup.setOption('headerStrCenter', '');
+   //jsPrintSetup.setOption('headerStrRight', '&PT');
+   // set empty page footer
+   //jsPrintSetup.setOption('footerStrLeft', '');
+   //jsPrintSetup.setOption('footerStrCenter', '');
+   //jsPrintSetup.setOption('footerStrRight', '');
+   // clears user preferences always silent print value
+   // to enable using 'printSilent' option
+   jsPrintSetup.clearSilentPrint();
+   // Suppress print dialog (for this context only)
+   jsPrintSetup.setOption('printSilent', 1);
+   // Do Print
+   // When print is submitted it is executed asynchronous and
+   // script flow continues after print independently of completetion of print process!
+   jsPrintSetup.print();
+</script>
+
+<style>
+    .invoice-box{
+        max-width:1000px;
+        margin:auto;
+        padding:2px;
+        border:0px solid #eee;
+        /*box-shadow:0 0 10px rgba(0, 0, 0, .15);*/
+        font-size:10px;
+        line-height:15px;
+        font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color:#555;
+    }
+
+    .invoice-box table{
+        width:100%;
+        line-height:inherit;
+        text-align:left;
+    }
+
+    .invoice-box table td{
+        padding:2px;
+        vertical-align:top;
+    }
+
+    .invoice-box table tr td:nth-child(2){
+        text-align:right;
+    }
+
+    .invoice-box table tr.top table td{
+      /*  padding-bottom:10px;*/
+    }
+
+    .invoice-box table tr.top table td.title{
+        font-size:45px;
+        line-height:45px;
+        color:#333;
+    }
+
+    .invoice-box table tr.information table td{
+        padding-bottom:10px;
+    }
+
+    .invoice-box table tr.heading td{
+        background:#eee;
+        border-bottom:1px solid #ddd;
+        font-weight:bold;
+    }
+
+    .invoice-box table tr.details td{
+        padding-bottom:20px;
+    }
+
+    .invoice-box table tr.item td{
+        border-bottom:1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td{
+        border-bottom:none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2){
+        border-top:2px solid #eee;
+        font-weight:bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+
+        .invoice-box table tr.information table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+    }
+    @page {
+          size: 21cm 15cm;
+          /*margin: 30mm 45mm 30mm 45mm; /* change the margins as you want them to be. */
+      }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr class="top">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="img/lgsis.png" style="width:90px;">
+                            </td>
+
+                            <td>
+                                Fecha : <?php echo date("d/m/Y"); ?>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                          <?php
+                            foreach ($cliente->data as $row)
+                            { ?>
+                              <td>
+                                 Razon Social : <?php echo $row->nomcompleto;  ?> <br>
+                                <b>   R.u.c        :</b>  <?php echo $row->numrucper;  ?> <br>
+                                <b>   Direccion    :</b>  <?php echo $row->domiciper;  ?><br>
+                              </td>
+
+                          <?php  }
+
+                          ?>
+
+                            <td>
+                                Molino Avila <br>
+                                555-5555 <br>
+                                www.megafilmperu.com.pe
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!--<tr class="heading">
+                <td>
+                    Payment Method
+                </td>
+
+                <td>
+                    Check #
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    Check
+                </td>
+
+                <td>
+                    1000
+                </td>
+            </tr> -->
+
+            <tr class="heading">
+                <td style="width:60%;">
+                    Producto
+                </td>
+                <td style="width:10%;text-align:center;">
+                    Precio
+                </td>
+                <td style="width:10%;text-align:center;">
+                    Cantidad
+                </td>
+
+                <td style="width:10%;text-align:right;">
+                    Total
+                </td>
+            </tr>
+            <?php
+              $totalVenta=0;
+               foreach ($detalle->data as $row)
+               { ?>
+                 <tr class="item">
+                     <td style="width:60%;">
+                         <?php echo $row->descripcion;   ?>
+                     </td>
+                     <td style="width:10%;text-align:center;">
+                        <?php echo  number_format($row->precio,2,'.',' ') ;   ?>
+                   </td>
+                       <td style="width:10%;text-align:center;">
+                          <?php echo   number_format($row->cantidad,0,'.',' ');   ?>
+                     </td>
+
+                       <td style="width:10%;text-align:right;padding-right:5px;">
+                          <?php
+                            echo number_format($row->total,2,'.',' ');
+                            $totalVenta = $totalVenta + $row->total;
+                          ?>
+
+                     </td>
+                 </tr>
+            <?php   }
+            ?>
+             <tr class="item">
+               <td style="width:60%;">
+
+               </td>
+               <td style="width:10%;text-align:center;">
+
+             </td>
+                 <td style="width:10%;text-align:center;">
+                   Total
+               </td>
+
+                 <td style="width:10%;text-align:right;padding-right:5px;">
+                   <?php  echo  number_format($totalVenta ,2,'.',' ');?>
+               </td>
+             </tr>
+        </table>
+    </div>

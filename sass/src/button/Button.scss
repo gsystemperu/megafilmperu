@@ -1,0 +1,6 @@
+@include extjs-button-toolbar-small-ui(
+           $ui: 'btnakin',
+           $font-weight: bold,
+	         $padding: 5px,
+           $background-color: $highlight-color
+       );

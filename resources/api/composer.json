@@ -1,0 +1,9 @@
+{
+    "name": "eerazozamudio/api",
+    "authors": [{
+        "name": "Eddy Erazo Zamudio",
+        "email": "eerazozamudio@gmail.com"
+    }],
+    "require": {
+    }
+}

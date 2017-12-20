@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+
+@page {
+  size: A4;
+  margin: 5px;
+  letter-spacing: 5pt
+}
+
+@media print {
+  html, body {
+    width: 330mm;
+    height: 180mm;
+    border: solid 0px;
+    letter-spacing: 5pt
+  }/* ... the rest of the rules ... */
+}
+
+.documento_bordes{
+    padding: 180px 30px 5px 30px;/* 150px */
+    font-size: 12px;
+
+  }
+  .documento_superior{
+    height: 100px;
+
+  }
+  .documento_espacios_persona {
+    padding-top: 0px;
+    padding-left: 100px;
+    text-align:left;
+  }
+  .documento_fecha_espacios{
+    padding-left: 70%;
+  }
+  .documento_row_cantidad{
+    width: 120px;
+    padding-left: 90px;
+    padding-top: 5px;
+  }
+  .documento_row_descripcion{
+    width: 1200px;
+    padding-left: 9px;
+    padding-top: 5px;
+  }
+  .documento_row_pu{
+    width: 130px;
+    padding-left: 9px;
+    padding-top: 5px;
+  }
+  .documento_espacios_tabla {
+    padding-top: 10px;
+    width: 100%;
+  }
+
+body{
+  border:solid 0px red;
+}
+
+</style>
+  <!--<link rel='stylesheet' type='text/css' href='css/style.css' /> -->
+</head>
+<body>
+
+<body class="documento_bordes">
+
+        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;letter-spacing: 3pt;">
+            <?php
+            $incluyeigv=0;
+                foreach ($cliente->data as $row)
+                  {
+                    $mes     = $row->mes;
+                    $dia     = $row->dia;
+                    $anio    = $row->anio;
+                    $nombrecliente = $row->nomcompleto;
+                    $direccion =  $row->domiciper;
+                    $ruc       = $row->numrucper;
+                    $telefono =$row->telefper;
+                    $formapago       = $row->formapago;
+                    $incluyeigv= $row->incluyeigv;
+                    $guia  = $row->serieguia;
+
+                  }
+
+            ?>
+            <tr >
+                <td>
+                    <table border="0" style="width:100%;" cellpadding="0" cellspacing="0" >
+                              <tr>
+                                <td>
+                                      <table border="0" style="height:10px;" cellpadding="0" cellspacing="0">
+                                          <tr>
+                                              <td width="50" style="padding-left:80px;"><?php echo $dia; ?></td>
+                                              <td align="center" style="width:200px;"><?php echo $mes; ?></td>
+                                              <td align="right" style="width:150px;"><?php echo substr($anio,2,4);  ?></td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td colspand="2" class="documento_espacios_persona" style="height:10px;">
+                                    <?php echo  $nombrecliente;  ?>
+                                  </td>
+                                  
+                              </tr>
+                              <tr  style="text-align:left;height:25px;">
+                                  <td class="documento_espacios_persona" colspan="2" style="height:23x;">
+                                  <?php echo strtoupper( $direccion) ; ?>
+                                 </td>
+                              </tr>
+                              <tr  style="text-align:left;height:25px;">
+                                  <td class="documento_espacios_persona" style="text-align:left;height:23px;" colspan="2" >
+                                      <table style="width:100%;" cellpadding="0" cellspacing="0">
+                                          <tr>
+                                              <td style="text-align:left;height:10px;" >
+                                               <?php
+                                                  echo $ruc;
+                                               ?>
+                                              </td>
+                                              <td style="text-align:left;height:10px;" >
+                                               <?php
+                                                  echo $telefono;
+                                               ?>
+                                              </td>
+                                              <td style="text-align:right;height:10px;" >
+                                               <?php
+                                                  echo $guia;
+                                               ?>
+                                              </td>
+                                          </tr>
+                                      <table>
+                                  </td>
+
+                              </tr>
+                            </tr>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                  <td style="height:30px;" colspan="2"></td>
+            </tr>
+            <tr>
+            <td colspan="2">
+                    <table border="0" style="width:100%;font-size:10px;">
+                    <?php
+                          $item=0;
+                          $total=0;
+                          $subtotal=0;
+                          $igv = 0;
+                          foreach ((array)$detalle->data as $row)
+                            { ?>
+                                <tr>
+                                  <td style="width:60px;text-align:center;height:20px;"><?php echo number_format($row->cantidad, 2, '.', ' ');   ?></td>
+                                  <td style="width:80px;text-align:left;height:20px;"><?php echo $row->codigoproducto;  ?></td>
+                                  <td style="width:200px;text-align:left;height:20px;"><?php echo $row->nombre;  ?></td>
+                                  <td style="width:50px;text-align:center;border:0px solid;height:20px;"><?php echo number_format($row->precio, 2, '.', ' ');  ?></td>
+                                  <td style="width:50px;text-align:right;padding-right:10px;border:0px solid;height:20px;"><?php echo number_format($row->total, 2, '.', ' ');  ?></td>
+                                </tr>
+
+                          <?php
+                            $total = $total + $row->total;
+
+                            $item = $item+1;
+                            }
+                           
+                            if($item < 9){
+                                for($i=$item;$i<9;$i++){
+                            ?>
+                                <tr>
+                                  <td style="width:60px;text-align:center;height:25px;"> </td>
+                                  <td style="width:80px;text-align:left;height:25px;"> </td>
+                                  <td style="width:200px;text-align:left;height:25px;"> </td>
+                                  <td style="width:50px;text-align:center;border:0px solid;height:25px;"> </td>
+                                  <td style="width:50px;text-align:right;padding-right:10px;border:0px solid;height:25px;"> </td>
+                                </tr>
+
+                            <?php
+                                  $item = $item + 1;
+                                }
+                            }
+
+                            if($item == 9){
+
+                                  if($incluyeigv==0){
+                                  $subtotal = $total;
+                                  $igv = $total * 0.18;
+                                  $total = $subtotal + $igv;
+                                  }else{
+                                  $total = $total;
+                                  $igv = $total * 0.18;
+                                  $subtotal = $total - $igv;
+                                  }
+
+                              ?>
+                              <tr>
+                                <td style="width:60px;text-align:center;height:25px;"> </td>
+                                <td style="width:80px;text-align:left;height:25px;"> </td>
+                                <td style="width:200px;text-align:left;height:25px;"> </td>
+                                <td style="width:50px;text-align:center;border:0px solid;height:25px;"> </td>
+                                <td style="width:50px;text-align:right;padding-right:10px;border:0px solid;height:25px;font-size:13px;"><?php echo number_format($subtotal,2,'.',' '); ?> </td>
+                              </tr>
+                              <tr>
+                                <td style="width:60px;text-align:center;height:25px;"> </td>
+                                <td style="width:80px;text-align:left;height:25px;"> </td>
+                                <td style="width:200px;text-align:left;height:25px;"> </td>
+                                <td style="width:50px;text-align:center;border:0px solid;height:25px;"> </td>
+                                <td style="width:50px;text-align:right;padding-right:10px;border:0px solid;height:25px;font-size:13px;"><?php echo number_format($igv,2,'.',' '); ?> </td>
+                              </tr>
+                                <tr>
+                                  <td style="width:60px;text-align:center;height:25px;"> </td>
+                                  <td style="width:80px;text-align:left;height:25px;"> </td>
+                                  <td style="width:200px;text-align:left;height:25px;"> </td>
+                                  <td style="width:50px;text-align:center;border:0px solid;height:25px;"> </td>
+                                  <td style="width:50px;text-align:right;padding-right:10px;border:0px solid;height:25px;font-size:13px;"><?php echo number_format($total,2,'.',' '); ?> </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                   </table>
+            </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+<script>
+   /*jsPrintSetup.setOption('orientation', jsPrintSetup.kPortraitOrientation);
+   jsPrintSetup.setOption('marginTop', 5);
+   jsPrintSetup.setOption('marginBottom', 5);
+   jsPrintSetup.setOption('marginLeft', 5);
+   jsPrintSetup.setOption('marginRight', 5);*/
+   // set page header
+   //jsPrintSetup.setOption('headerStrLeft', 'Molino Avila');
+   //jsPrintSetup.setOption('headerStrCenter', '');
+   //jsPrintSetup.setOption('headerStrRight', '&PT');
+   // set empty page footer
+   //jsPrintSetup.setOption('footerStrLeft', '');
+   //jsPrintSetup.setOption('footerStrCenter', '');
+   //jsPrintSetup.setOption('footerStrRight', '');
+
+   // clears user preferences always silent print value
+   // to enable using 'printSilent' option
+   jsPrintSetup.clearSilentPrint();
+   jsPrintSetup.setOption('printSilent', 1);
+   jsPrintSetup.print();
+</script>
