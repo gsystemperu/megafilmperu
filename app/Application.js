@@ -36,8 +36,11 @@ Ext.define('megafilmperu.Application', {
         'almacen.ListadoFacturarProveedor',
         'almacen.FormCrearFacturaProveedor',
         'almacen.ContenedorFacturaProveedorImportado',
-        
+        'almacen.InventarioInicial',
+        'almacen.ContenedorInventario',
 
+
+        'almacen.ListadoInventario',
         'ventas.ContenedorCotizaciones',
         'ventas.ContenedorCliente',
         'ventas.ListadoDeCotizaciones',
@@ -70,7 +73,8 @@ Ext.define('megafilmperu.Application', {
         'puntoventa.ListaSeriesUnidades',
         'puntoventa.ListaSeriesFraccion',
 
-        'contabilidad.frmTipoCambio'
+        'contabilidad.frmTipoCambio',
+        'seguridad.Login'
 
     ],
 
@@ -85,10 +89,11 @@ Ext.define('megafilmperu.Application', {
        Ext.getBody().on('keydown', function(ev){
        if(ev.getKey() === ev.self.F2){
             megafilmperu.util.Util.crearWindowOpenMantenimiento('Tipo de Cambio','wfrmTipoCambio',450,130,null,'wTipoCambio');
-         } 
+         }
        });
 
        Ext.create('wMain');
-       document.getElementById("splashscreen").style.display = 'none';  
+       document.getElementById("splashscreen").style.display = 'none';
+       
     }
 });
