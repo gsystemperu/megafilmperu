@@ -18,17 +18,9 @@
             frame: false,
             bodyPadding: 0
         },
-        url : '',
         controller:'acciones-listaseriesunidades', //**CAMBIAR
         initComponent: function () {
-            /*__storeProductoExistencias = Ext.create('megafilmperu.store.ProductoExistencias');
-            __storeProductoExistencias.load({
-                  params:{
-                    idprod : this.codigo
-                  }
-            });*/
-
-            __storeSeriesUnidad      = Ext.create('megafilmperu.store.ListaSeriesFraccionVenta');
+            st      = Ext.create('megafilmperu.store.ListaSeriesFraccionVenta');
 
             Ext.Ajax.request({
                 url :'resources/api/producto_existencias',
@@ -45,10 +37,8 @@
                         'codigobarras': record.codigobarras,
                         'vencimiento' : record.vencimiento,
                         'medida_metros': record.medida_metros
-                        //'cantidadventa' : 0,
-
                     };
-                      __storeSeriesUnidad.insert(__x++,__dato);
+                      st.insert(__x++,__dato);
                   });
 
                 }
@@ -62,7 +52,7 @@
                         items: [{
                             xtype: 'grid',
                             itemId: 'dgvSeriesProductosUnidadesPdv',//**CAMBIAR
-                            store: __storeSeriesUnidad,
+                            store: st,
                             sortableColumns: false,
                             cantidad : this.cantidad,
                             columns: [
@@ -76,10 +66,7 @@
                                     metaData.style="background-color:#30B59B;color:#EEEEEE;fontSize:13px;";
                                     return 'OK';
                                   }
-
-
                                }
-                                //disabled: true
                               },
                               {
                                     text: 'CODIGO SERIE UNICO',
@@ -138,9 +125,11 @@
                                     itemId:'txtSerieUnico',
                                     emptyText  :'-- CODIGO DE BARRAS --',
                                     enableKeyEvents : true,
+                                    hasFocus:true,
                                     fieldStyle :'text-align: center;font-size:20px;font-weight:bold;',
                                     listeners:{
-                                      keyup:'onKeyUpBuscarCodigoBarras'
+                                      keyup  :'onKeyUpBuscarCodigoBarras',
+                                      change :'onChangeBuscarCodigoBarrasUnidad',
                                     }
                                   },
 
@@ -162,14 +151,13 @@
 
                               }
                             ]
-                            /*listeners :{
-                                itemdblclick :'onSelectedCliente' //**CAMBIAR
-                            }*/
+                           
 
                         }]
                     }
                 ]
             });
             this.callParent();
+
         }
     });

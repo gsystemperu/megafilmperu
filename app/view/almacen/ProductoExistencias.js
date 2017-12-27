@@ -122,6 +122,13 @@ Ext.define('megafilmperu.view.almacen.ProductoExistencias', {
           text :'Almacen',
           tooltip : 'Opcion para registrar la ubicacion del producto en almacen.',
           handler: 'onClickIngresarUbicacionProducto'
+        },
+        {
+          xtype: 'button',
+          glyph: 0xf02a,
+          text :'Imprimir Codigo Barras',
+          tooltip : 'Opcion para imprimir sus codigos de barra',
+           handler: 'onClickGenearCodigosBarras'
         }
 
 
@@ -215,24 +222,9 @@ Ext.define('megafilmperu.view.almacen.ProductoExistencias', {
               width : 100,
             align: 'center'
           },
-
-          /*{
-           xtype: 'widgetcolumn',
-           flex: 0.5,
-           widget: {
-             xtype: 'button',
-             flex: 1,
-             glyph: 0xf0d1,
-             tooltip : 'Opcion para registrar la ubicacion del producto en almacen.',
-             handler: 'onClickIngresarUbicacionProducto'
-           }
-          }*/
         ],
-
       }]
-
-
-
     };
   }
 });
+

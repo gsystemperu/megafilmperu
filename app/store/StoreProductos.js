@@ -81,8 +81,6 @@ Ext.define('megafilmperu.store.ProductosOrdenCompra', {
         }
     }
 });
-
-
 /*
 @DataSet :
 Stores para visualizar las series de cada producto por lote y guia
@@ -99,6 +97,49 @@ Ext.define('megafilmperu.store.ProductoExistencias', {
     proxy: {
         type: 'ajax',
         api: {read: 'resources/api/producto_existencias'},
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        }
+    }
+});
+/*
+@DataSet :
+==============================================================
+*/
+Ext.define('megafilmperu.store.ProductoInventarioLista', {
+    extend: 'Ext.data.Store',
+    requiere:['megafilmperu.model.DataModels'],
+    model   :'megafilmperu.model.ProductoInventario',
+    autoLoad: false,
+    remoteSort: true,
+    autoSync  : false,
+    proxy: {
+        type: 'ajax',
+        api: {read: 'resources/api/producto_inventario_listar'},
+        reader: {
+            type: 'json',
+            rootProperty: 'data',
+        }
+    }
+});
+
+/*
+@DataSet :
+@Descripcion : 
+DataSet para los registros de los inventarios
+==============================================================
+*/
+Ext.define('megafilmperu.store.InventarioRegistros', {
+    extend  : 'Ext.data.Store',
+    requiere:['megafilmperu.model.DataModels'],
+    model   :'megafilmperu.model.InventarioRegistro',
+    autoLoad: true,
+    remoteSort: true,
+    autoSync  : false,
+    proxy: {
+        type: 'ajax',
+        api: {read: 'resources/api/producto_inventario_registros'},
         reader: {
             type: 'json',
             rootProperty: 'data',

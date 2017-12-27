@@ -23,6 +23,11 @@ Ext.define('megafilmperu.store.tree.ControlAlmacen', {
         glyph : 'xf16b'
       },
       {
+        text: 'Ingreso Mercaderia Interna',
+        expanded: true,
+         children: []
+      },
+      {
         text: 'Ingreso Mercaderia',
         expanded: true,
          children: [
@@ -56,6 +61,39 @@ Ext.define('megafilmperu.store.tree.ControlAlmacen', {
           }
         ]
       },
+      {
+        text: 'Devolución Mercaderia',
+        expanded: true,
+         children: [
+          {
+            text: 'Crear Guia',
+            leaf: true,
+            //itemId: "wContenedorOrdenCompra",
+            titulo: "Devoluciones",
+            glyph : 'xf16b'
+          }
+        ]
+      },
+      {
+        text: 'Inventario Mercaderia',
+        expanded: true,
+         children: [
+          {
+            text: 'Registro de Inventario',
+            leaf: true,
+            itemId: "wContenedorInventario",
+            titulo: "Inventario",
+            glyph : 'xf16b'
+          },
+          {
+            text: 'Cierre de Inventario',
+            leaf: true,
+            itemId: "wRegInventarioInicial",
+            titulo: "Inventario",
+            glyph : 'xf16b'
+          }
+        ]
+      }
 
 
     ]

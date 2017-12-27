@@ -176,8 +176,13 @@ $di->set('router',function() {
     $router->add('/producto_buscar_codigobarras' , array('controller'=>'producto','action'=>'buscarproductoporcodigobarra'));
     $router->add('/producto_buscar_proveedores' , array('controller'=>'producto','action'=>'listarproveedoresproducto'));
     $router->add('/producto_actualizar_precios' , array('controller'=>'producto','action'=>'actualizarprecios'));
+    $router->add('/producto_generar_codigos' , array('controller'=>'impresion','action'=>'generarcodigos39'));
+    $router->add('/producto_inventario_listar' , array('controller'=>'producto','action'=>'listadoinventario'));
+    $router->add('/producto_inventario_registros' , array('controller'=>'producto','action'=>'inventarioregistros'));
+    $router->add('/producto_inventario_agregar' , array('controller'=>'producto','action'=>'inventarioagregar'));
+    $router->add('/producto_inventario_pdf' , array('controller'=>'impresion','action'=>'imprimirstockinventario'));
     
-
+    
     /*
     | @@ Controlador Proveedor
     */
@@ -261,10 +266,9 @@ $di->set('router',function() {
      $router->add('/insertar_compra_factura', array('controller'=>'facturacion','action'=>'insertarfacturacompras'));
      $router->add('/listar_motivos_translado', array('controller'=>'facturacion','action'=>'listarmotivostranslados'));
      $router->add('/detalle_facturacion'   , array('controller'=>'facturacion','action'=>'detallefacturacion'));
-    
      $router->add('/buscar_punto_venta_pagos', array('controller'=>'facturacion','action'=>'buscarventaspdv'));
-  //  $router->add('/anular_facturacion', array('controller'=>'facturacion','action'=>'anularfactura'));
-    $router->add('/actualizar_guia_remision', array('controller'=>'facturacion','action'=>'actualizarguiaremision'));
+     $router->add('/anular_facturacion', array('controller'=>'facturacion','action'=>'anular'));
+     $router->add('/actualizar_guia_remision', array('controller'=>'facturacion','action'=>'actualizarguiaremision'));
 
     $router->add('/impfacturaa4', array('controller'=>'impresion','action'=>'facturaa4'));
     $router->add('/impfactura', array('controller'=>'impresion','action'=>'factura'));

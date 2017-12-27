@@ -33,6 +33,38 @@ Ext.define('megafilmperu.view.puntoventa.ListaSeriesUnidadesController', {
           }
       }
     },
+    onChangeBuscarCodigoBarrasUnidad( obj, newValue, oldValue, eOpts ) {
+       if(newValue){
+            st  = Ext.ComponentQuery.query('#dgvSeriesProductosUnidadesPdv')[0].getStore();
+            c = Ext.ComponentQuery.query('#txtSerieUnico')[0].getValue().trim();
+            r = st.findRecord('codigobarras', c);
+            se     = [];
+            ca = [];
+            if(r)
+            {
+              st.beginUpdate();
+              r.set('chk', true);
+              st.endUpdate();
+              co = 0;
+              st.each(function(record){
+                  if(record.get('chk') == true)
+                  {
+                    co ++ ;
+                    se.push(record.get('id'));
+                    ca.push(0);
+                  }
+              });
+              Ext.ComponentQuery.query('#txtTotalSeriesUnidades')[0].setValue(co);
+              Ext.ComponentQuery.query('#txtSeriesVenta')[0].setValue( se  );
+              Ext.ComponentQuery.query('#txtCantidadesVenta')[0].setValue( ca  );
+              obj.setValue('');
+           }else{
+             Ext.Msg.alert("Aviso","El producto ya fue vendido, o el producto es diferente a lo solicitado!!");
+             obj.setValue('');
+             return false;
+           }
+       }
+    },
     onKeyUpBuscarCodigoBarrasFraccion:function( obj, e, eOpts){
 
       if(e.keyCode==13){
@@ -61,8 +93,6 @@ Ext.define('megafilmperu.view.puntoventa.ListaSeriesUnidadesController', {
                    __contador ++ ;
                  }
              });
-
-             __grid = Ext.ComponentQuery.query('#dgvSeriesProductosFraccionPdv')[0];
              Ext.ComponentQuery.query('#txtTotalItems')[0].setValue(__contador);
 
            }
@@ -70,11 +100,45 @@ Ext.define('megafilmperu.view.puntoventa.ListaSeriesUnidadesController', {
 
       }
     },
+    onChangeBuscarCodigoBarrasFraccion( obj, newValue, oldValue, eOpts ) {
+      if (newValue) {
+        st = Ext.ComponentQuery.query('#dgvSeriesProductosFraccionPdv')[0].getStore();
+        c = Ext.ComponentQuery.query('#txtSerieUnico')[0].getValue().trim();
+        r = st.findRecord('codigobarras', c);
+        if (r) {
+          try {
+            st.beginUpdate();
+            r.set('chk', true);
+            st.endUpdate();
+            co = 0;
+            st.each(function (record) {
+              if (record.get('chk') == true) {
+                co++;
+              }
+            });
+            Ext.ComponentQuery.query('#txtTotalItems')[0].setValue(co);
+            obj.setValue('');
+          } catch (e) {
+            co = 0;
+            st.each(function (record) {
+              if (record.get('chk') == true) {
+                co++;
+              }
+            });
+            Ext.ComponentQuery.query('#txtTotalItems')[0].setValue(co);
+            obj.setValue('');
+          }
+        }else{
+          Ext.Msg.alert("Aviso","El producto ya fue vendido, o el producto es diferente a lo solicitado!!");
+          obj.setValue('');
+          return false;
+        }
+      }
+   },
     onEditorSumarMontos:function(editor,e){
       me = this;
       var __store = Ext.ComponentQuery.query('#dgvSeriesProductosFraccionPdv')[0].getStore();
       var __tot = 0;
-      //var __jsondata = [];
       var __arrayseries     = [];
       var __arraycantidades = [];
       __store.each(function (record) {
@@ -84,17 +148,10 @@ Ext.define('megafilmperu.view.puntoventa.ListaSeriesUnidadesController', {
                Ext.Msg.alert("Aviso","La cantidad ingresada es mayor al stock !!");return false;
             }
               __tot = parseFloat(__tot) + parseFloat(record.get('cantidadventa'));
-
-              /*__reg1 = {"serie" : record.get('id')};
-              __reg2 = {"cantidadventa" : record.get('cantidadventa')};*/
               __arrayseries.push(record.get('id'));
               __arraycantidades.push(record.get('cantidadventa'));
 
-              /*__reg = {
-                "serie"         : record.get('id'),
-                "cantidadventa" : record.get('cantidadventa')
-              };
-              __jsondata.push(__reg);*/
+              
 
           }
       });
@@ -172,5 +229,7 @@ Ext.define('megafilmperu.view.puntoventa.ListaSeriesUnidadesController', {
       });
       Ext.ComponentQuery.query('#txtTotalSeriesUnidades')[0].setValue(__contador);
 
-    }
+    },
+   
+
 });

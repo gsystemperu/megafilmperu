@@ -12,7 +12,7 @@ Ext.define('megafilmperu.view.main.Main', {
     {
       region: 'west',
       collapsible: true,
-      collapsed : false,
+      collapsed : true,
       titleCollapse :false,
       title: '::. MEGAFILM PERU.::',
        width: 250,

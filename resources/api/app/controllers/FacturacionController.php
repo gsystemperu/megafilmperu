@@ -45,21 +45,7 @@ class FacturacionController extends Controller
            return $response;
       }
     }
-    public function anularAction(){
-         $request        = new Phalcon\Http\Request();
-         $response       = new \Phalcon\Http\Response();
-         if($request->isPost() ==true)
-         {
-              $idpersona   = $request->getPost('idpersona');
-              $usuario    = $request->getPost('usuario');
-              $data = array($idpersona,$usuario);
-              $jsonData  = Persona::eliminar($data);
-              $response->setContentType('application/json', 'UTF-8');
-              $response->setContent(json_encode($jsonData[0], JSON_NUMERIC_CHECK));
-              return $response;
-         }
-    }
-
+   
     public function actualizarpagoacuentaAction(){
       $request        = new Phalcon\Http\Request();
       $response       = new \Phalcon\Http\Response();
@@ -258,6 +244,21 @@ class FacturacionController extends Controller
            $jsonData      = Facturacion::buscarVentasPdv($data);
            $response->setContentType('application/json', 'UTF-8');
            $response->setContent($jsonData);
+           return $response;
+      }
+    } 
+
+    public function anularAction(){
+      $request        = new Phalcon\Http\Request();
+      $response       = new \Phalcon\Http\Response();
+      if($request->isPost() ==true)
+      {
+           $idfactura   = $request->getPost('idfactura');
+           $usuario     = $request->getPost('usuario');
+           $data        = array($idfactura,$usuario);
+           $jsonData    = Facturacion::anularfactura($data);
+           $response->setContentType('application/json', 'UTF-8');
+           $response->setContent(json_encode($jsonData[0], JSON_NUMERIC_CHECK));
            return $response;
       }
     }

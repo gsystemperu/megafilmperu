@@ -48,7 +48,8 @@ Ext.define('megafilmperu.view.ventas.AccionesContenedorCotizacionesFacturar', {
                             cantidad:record.cantidad,
                             precio: record.precio,
                             total: record.total,
-                            vencimiento : record.vencimiento
+                            vencimiento : record.vencimiento,
+                            estado : 'INCOMPLETO'
                         };
                       _store.insert(0, _data);
                       _tot = _tot + record.total;

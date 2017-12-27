@@ -1,10 +1,13 @@
 <?php
 use \Phalcon\Mvc\Controller as Controller;
 
-include __DIR__ .'/../library/funciones.php';
+/*include __DIR__ .'/../library/funciones.php';
 include __DIR__ .'/../library/phpmailer/class.phpmailer.php';
 include __DIR__ .'/../library/phpmailer/class.pop3.php';
 include __DIR__ .'/../library/phpmailer/class.smtp.php';
+*/
+
+include __DIR__ .'/../library/fpdf/code39.php';
 
 
 class ImpresionController extends Controller
@@ -43,7 +46,6 @@ class ImpresionController extends Controller
     }
     public function guiaremisiont1Action()
     {
-      
             $request  = new Phalcon\Http\Request();
             $idcoti   = $request->get("id");
             $data     = array($idcoti);
@@ -183,7 +185,57 @@ class ImpresionController extends Controller
 
 
     }
+    public function generarcodigos39Action(){  
+        $this->view->disable();      
+        $pdf=new PDF_Code39();
+        $request    = new Phalcon\Http\Request();
+        $data  = array($request->get("id"));
+        $prod  =  json_decode(Producto::existenciasPorProducto($data));
+        $pdf->AddPage(); 
+        $pdf->SetFont('Arial','B',16);
+        $fila = 0;
+        //print_r( $prod->data[0]);die();
+        $pdf->Cell(0,10,'Codigos del producto :' . $prod->data[0]->nombre ,0,1,'C');    
+        $pdf->Ln(1);
+        foreach ($prod->data as $row){
+          $fila = $fila + 20;
+          $pdf->setY($fila);
+          $pdf->Code39(10,$pdf->getY(), $row->codigobarras ,0.5,10);
+        }
 
+        $pdf->Output();
+    }  
+
+    public function imprimirstockinventarioAction(){  
+      $this->view->disable();      
+      $pdf = new fpdf('P','mm','A4');
+      $request    = new Phalcon\Http\Request();
+      $data = array($request->get('mes'));
+      $jsonData = json_decode( Producto::listarInventario($data) );
+      $pdf->AddPage(); 
+      $pdf->SetFont('Arial','B',16);
+      $fila = 0;
+      $pdf->Cell(0,10,'Registro de Inventario',1,1,'C');
+      $pdf->SetFont('Arial','',9);
+      //print_r( $jsonData->data[0]);die();
+      $pdf->Cell(30,5,'Codigo' ,1,0,'C');
+      $pdf->Cell(100,5,'Producto' ,1,0,'C');
+      $pdf->Cell(20,5,'Stock Fisico' ,1,0,'C');
+      $pdf->Cell(20,5,'Inventario' ,1,0,'C');   
+      $pdf->Cell(20,5,'Diferencia' ,1,1,'C');   
+      $pdf->SetFont('Arial','',8);
+     foreach ($jsonData->data as $row){
+          //  $pdf->Code39(10,$pdf->getY(), $row->codigobarras ,0.5,10);
+        $pdf->Cell(30,5,$row->codigoproducto  ,1,0,'C');
+        $pdf->Cell(100,5,$row->nombre ,1,0,'L');
+        $pdf->Cell(20,5,$row->stockfisico ,1,0,'C');
+        $pdf->Cell(20,5,'' ,1,0,'C');   
+        $pdf->Cell(20,5,'' ,1,1,'C');   
+        
+      }
+
+      $pdf->Output();
+  }  
 
 
 }

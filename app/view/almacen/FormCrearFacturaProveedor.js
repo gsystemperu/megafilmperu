@@ -211,7 +211,7 @@ Ext.define('megafilmperu.view.almacen.FormCrearFacturaProveedor', {
                                           labelAlign :'right',
                                           name : 'seriedoc',
                                           value : '001',
-                                          flex : 0.5,
+                                          flex : 1,
                                           labelWidth : 150,
                                           allowBlank:false,
                                           itemId : 'txtSerieNumero',
@@ -222,7 +222,7 @@ Ext.define('megafilmperu.view.almacen.FormCrearFacturaProveedor', {
                                           labelAlign :'right',
                                           name : 'numerodoc',
                                           itemId : 'txtNumeroDoc',
-                                          flex : 0.5,
+                                          flex : 1,
                                           allowBlank:false,
                                           fieldStyle : 'color:#ffffff;font-Size:15px;background-color:#9a9ba8;text-align:center;'
                                         },

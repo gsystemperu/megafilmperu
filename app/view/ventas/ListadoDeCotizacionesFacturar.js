@@ -13,7 +13,6 @@ Ext.define('megafilmperu.view.ventas.ListadoDeCotizacionesFacturar', {
     ],
     layout: {
         type: 'vbox',
-        //pack: 'start',
         align: 'stretch'
     },
     bodyPadding: 0,

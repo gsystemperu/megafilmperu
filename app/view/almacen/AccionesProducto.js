@@ -232,8 +232,14 @@ Ext.define('megafilmperu.view.almacen.AccionesProducto', {
     },
     onClickRefrescarCombo:function(btn){
       Ext.ComponentQuery.query('#'+btn.combo)[0].getStore().load();
-    }
+    },
+    onClickGenearCodigosBarras:function(btn){
+         i =   Ext.ComponentQuery.query('#dgvProductos')[0].getSelectionModel().getSelection()[0]; 
+         w = window.open( megafilmperu.util.Rutas.productoGenerarCodigos+ 'id='+ i.get('id').toString() , "", "width=700,height=900");
+       // setTimeout(function(){ objrpt.close(); }, 1000);
+      
 
+    }
 
 
 });

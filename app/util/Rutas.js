@@ -27,7 +27,12 @@ Ext.define('megafilmperu.util.Rutas', {
         productoBuscarCodigoBarras: 'resources/api/producto_buscar_codigobarras',
         productoBuscarProveedores: 'resources/api/producto_buscar_proveedores',
         productoActualizarPrecios: 'resources/api/producto_actualizar_precios',
+        productoGenerarCodigos: 'resources/api/producto_generar_codigos?',
+        inventarioAgregar: 'resources/api/producto_inventario_agregar',
+        inventarioImprimirStock: 'resources/api/producto_inventario_pdf',
 
+        
+    
         
         //@Acciones => Abastecimiento
         abastecimientoGuardar: 'resources/api/abastecimiento_guardar',
@@ -64,8 +69,7 @@ Ext.define('megafilmperu.util.Rutas', {
         facturacionBuscarPagosAcuenta:'resources/api/buscar_pago_acuenta',
         facturacionGuardarPagoPuntoVenta:'resources/api/agregar_punto_venta_pago',
         facturacionGuardarCompra:'resources/api/insertar_compra_factura',
-        
-        //facturacionAnular:'resources/api/anular_facturacion',
+        facturacionAnular:'resources/api/anular_facturacion',
         facturacionDetalle:'resources/api/detalle_facturacion',
         //apeturaCajaInsertar:'resources/api/ingresar_apetura_caja',
 

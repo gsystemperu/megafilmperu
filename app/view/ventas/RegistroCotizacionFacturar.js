@@ -372,8 +372,13 @@ Ext.define('megafilmperu.view.ventas.RegistroCotizacionFacturar', {
                                                         flex: 0.4,
                                                         align: 'center',
                                                         renderer: function (value, metaData, record) {
-                                                              metaData.style = "color:#EFEFEF;font-Size:10px;background-color:#0BB098";
-                                                              return value;
+                                                             // metaData.style = "color:#EFEFEF;font-Size:10px;background-color:#0BB098";
+                                                             // return value;
+                                                             metaData.style = "color:#ffffff;font-Size:12px;background-color:#5f7c8a";
+                                                             if(value == 'COMPLETADO' ){
+                                                                 metaData.style = "color:#ffffff;font-Size:12px;background-color:#C1175A";
+                                                             }
+                                                             return value;
                                                         }
                                                     },
                                                     {

@@ -118,6 +118,14 @@ Ext.define('megafilmperu.view.puntoventa.Main',{
                                   text: 'Estado',
                                   flex: 1.5,
                                   align: 'right',
+                                  renderer: function (value, metaData, record) {
+                                    metaData.style = "color:#ffffff;font-Size:12px;background-color:#5f7c8a";
+                                    if(value == 'COMPLETADO' ){
+                                        metaData.style = "color:#ffffff;font-Size:12px;background-color:#C1175A";
+                                    }
+                                    return value;
+                                    
+                                  }
 
                               },
                               {

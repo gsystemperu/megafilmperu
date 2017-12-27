@@ -567,3 +567,39 @@ Ext.define('megafilmperu.model.Empresa', {
     ]
 });
 
+// @Model : Lista de productos para el inventario
+//
+Ext.define('megafilmperu.model.ProductoInventario', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'codigoproducto',type: 'string'},
+        {name :'id',type:'integer'},
+        {name :'nombre',type:'string'},
+        {name :'stockfisico',type:'integer'},
+        {name :'inventario',type:'integer'},
+        {name :'diferencia',type:'integer'},
+        
+    ]
+});
+
+// @Model : Listado de Registros de inventario
+//
+Ext.define('megafilmperu.model.InventarioRegistro', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'id',type: 'string'},
+        {name :'referencia',type:'string'},
+        {name :'fechainventario',type:'date'},
+        {name :'idestado',type:'integer'},
+        {name :'estado',type:'string'},
+        {name :'stockfisico',type:'integer'},
+        {name :'inventario',type:'integer'},
+        {name :'diferencia',type:'integer'},
+        {name :'detalle',type:'string'}
+        
+    ]
+});
+
+
+
+

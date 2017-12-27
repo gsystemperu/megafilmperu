@@ -18,18 +18,9 @@
             frame: false,
             bodyPadding: 0
         },
-        url : '',
         controller:'acciones-listaseriesunidadesventa', //**CAMBIAR
         initComponent: function () {
-            /*__storeProductoExistencias = Ext.create('megafilmperu.store.ProductoExistencias');
-            __storeProductoExistencias.load({
-                  params:{
-                    idprod : this.codigo
-                  }
-            });*/
-
-            __storeSeriesUnidad      = Ext.create('megafilmperu.store.ListaSeriesFraccionVenta');
-
+            st      = Ext.create('megafilmperu.store.ListaSeriesFraccionVenta');
             Ext.Ajax.request({
                 url :'resources/api/producto_existencias',
                 params:{
@@ -46,9 +37,8 @@
                         'vencimiento' : record.vencimiento,
                         'medida_metros': record.medida_metros
                         //'cantidadventa' : 0,
-
                     };
-                      __storeSeriesUnidad.insert(__x++,__dato);
+                      st.insert(__x++,__dato);
                   });
 
                 }
@@ -62,7 +52,7 @@
                         items: [{
                             xtype: 'grid',
                             itemId: 'dgvSeriesProductosUnidadesPdv',//**CAMBIAR
-                            store: __storeSeriesUnidad,
+                            store: st,
                             sortableColumns: false,
                             cantidad : this.cantidad,
                             columns: [
@@ -140,7 +130,8 @@
                                     enableKeyEvents : true,
                                     fieldStyle :'text-align: center;font-size:20px;font-weight:bold;',
                                     listeners:{
-                                      keyup:'onKeyUpBuscarCodigoBarras'
+                                      //keyup:'onKeyUpBuscarCodigoBarras',
+                                      change :'onChangeBuscarCodigoBarrasUnidad'
                                     }
                                   },
 
@@ -162,10 +153,7 @@
 
                               }
                             ]
-                            /*listeners :{
-                                itemdblclick :'onSelectedCliente' //**CAMBIAR
-                            }*/
-
+                        
                         }]
                     }
                 ]

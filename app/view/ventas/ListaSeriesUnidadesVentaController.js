@@ -20,8 +20,6 @@ Ext.define('megafilmperu.view.ventas.ListaSeriesUnidadesVentaController', {
                 if(record.get('chk') == true)
                 {
                   __contador ++ ;
-                  //__reg1 = {"serie" : record.get('id')};
-                  //__reg2 = {"cantidadventa" : 0};
                   __arrayseries.push(record.get('id'));
                   __arraycantidades.push(0);
                 }
@@ -29,10 +27,41 @@ Ext.define('megafilmperu.view.ventas.ListaSeriesUnidadesVentaController', {
             Ext.ComponentQuery.query('#txtTotalSeriesUnidades')[0].setValue(__contador);
             Ext.ComponentQuery.query('#txtSeriesVenta')[0].setValue( __arrayseries  );
             Ext.ComponentQuery.query('#txtCantidadesVenta')[0].setValue( __arraycantidades  );
-            //Ext.ComponentQuery.query('#txtJsonSeriesCantidadesVenta')[0].setValue(__jsondata);
+            
           }
       }
     },
+    onChangeBuscarCodigoBarrasUnidad( obj, newValue, oldValue, eOpts ) {
+      if(newValue){
+           st  = Ext.ComponentQuery.query('#dgvSeriesProductosUnidadesPdv')[0].getStore();
+           c = Ext.ComponentQuery.query('#txtSerieUnico')[0].getValue().trim();
+           r = st.findRecord('codigobarras', c);
+           se     = [];
+           ca = [];
+           if(r)
+           {
+             st.beginUpdate();
+             r.set('chk', true);
+             st.endUpdate();
+             co = 0;
+             st.each(function(record){
+                 if(record.get('chk') == true)
+                 {
+                   co ++ ;
+                   se.push(record.get('id'));
+                   ca.push(0);
+                 }
+             });
+             Ext.ComponentQuery.query('#txtTotalSeriesUnidades')[0].setValue(co);
+             Ext.ComponentQuery.query('#txtSeriesVenta')[0].setValue( se  );
+             Ext.ComponentQuery.query('#txtCantidadesVenta')[0].setValue( ca  );
+             obj.setValue('');
+          }else{
+            Ext.Msg.alert("Aviso","El producto escaneado es diferente al solicitado");return false;
+            obj.setValue('');
+          }
+      }
+   },
     onKeyUpBuscarCodigoBarrasFraccion:function( obj, e, eOpts){
 
       if(e.keyCode==13){

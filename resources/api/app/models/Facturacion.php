@@ -80,6 +80,11 @@ class Facturacion extends \Phalcon\Mvc\Model
       $sql     =  $obj->executarJson('ventas','sp_facturacion_punto_venta_listar',$param);
       return $sql;
   }
-
+  public static function anularfactura($data){
+    $obj     = new SQLHelpers();
+    $param   = $data;
+    $sql     =  $obj->executar('ventas','sp_facturacion_anular',$param);
+    return $sql;
+  }
 
 }

@@ -68,32 +68,31 @@ Ext.define('megafilmperu.view.ventas.AccionesRegCotizacionesFacturar', {
     }
   },
   onClickEliminarcotizacionFacturar: function (button, event, eOpts) {
-    var rec = button.getWidgetRecord();
+    var r = button.getWidgetRecord();
     me = this;
-    if (rec.get('estado') == 3) {
-      megafilmperu.util.Util.showErrorMsg('No se puede anular esta factura!');
-      return false;
-    }
-    Ext.MessageBox.confirm('Aviso', 'Desea eliminar el producto ?', function (btn) {
-      if (btn == 'yes') {
-        if (rec) {
-
-          /*Ext.Ajax.request({
-              url :megafilmperu.util.Rutas.productoEliminar,
-              params:{
-                idproducto : rec.get('idprod')
-              },
-              success:function(response){
-                var data = Ext.JSON.decode(response.responseText);
-                Ext.each(data,function(r){
-                  if(r.error != 0)
-                       me.lookupReference('dgvProductos').getStore().load();
-                });
-              }
-          });*/
+    if (r.get('estado') == 3) {
+      Ext.MessageBox.confirm('Aviso', 'Desea anular la factura generada ?', function (btn) {
+        if (btn == 'yes') {
+          if (r) {
+            Ext.Ajax.request({
+                url :megafilmperu.util.Rutas.facturacionAnular,
+                params:{
+                  idfactura : r.get('idfacturacion'),
+                  usuario   : 'test'  // usuario
+                },
+                success:function(response){
+                  ob= Ext.JSON.decode(response.responseText);
+                  if(obj.error!=0)
+                      Ext.ComponentQuery.query('#dgvVentasFacturar')[0].getStore().reload();  
+                }
+            });
+          }
         }
-      }
-    });
+      });
+    }
+
+    
+        
   },
   onClickIngresarPagoAcuenta: function (btn) {
     r = btn.getWidgetRecord();
@@ -231,7 +230,7 @@ Ext.define('megafilmperu.view.ventas.AccionesRegCotizacionesFacturar', {
     w  = Ext.create('Ext.window.Window',{
        title : 'Listada de Productos',
        itemId : 'wProductosUnidades',
-       width : 550 ,
+       width : 680 ,
        height :600,
        autoShow:true,
        modal : true,
@@ -248,6 +247,7 @@ Ext.define('megafilmperu.view.ventas.AccionesRegCotizacionesFacturar', {
          }
        ]
     });
+    Ext.ComponentQuery.query('#txtSerieUnico')[0].focus(false,100);
    
   },
 

@@ -164,8 +164,11 @@
                                     emptyText :'-- CODIGO DE BARRAS --',
                                     enableKeyEvents : true,
                                     fieldStyle :'text-align: center;font-size:20px;font-weight:bold;',
+                                    selectOnFocus:true,
                                     listeners:{
-                                      keyup:'onKeyUpBuscarCodigoBarrasFraccion'
+                                      keyup:'onKeyUpBuscarCodigoBarrasFraccion',
+                                      change : 'onChangeBuscarCodigoBarrasFraccion'
+                                      
                                     }
                                   },
 

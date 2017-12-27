@@ -50,24 +50,44 @@ Ext.define('megafilmperu.view.ventas.ListadoDeCotizaciones', {
                     ],
                     emptyText: 'NO HAY REGISTROS PARA MOSTRAR SEGUN EL RANGO DE FECHAS',
                     columns: [
-                       {xtype: 'rownumberer'},
+                       {xtype: 'rownumberer',flex:0.3,align:'center'},
                       {
                             text: 'Fecha ',
                             dataIndex: 'vfecha',
-                            flex: 0.5,
+                            flex: 0.8,
                             align: 'center'
                         },
                         {
                             text: 'Nombre / Razon Social',
                             dataIndex: 'nomcompleto',
-                            flex: 2
+                            flex: 2.5
                         },
                         {
                             text: 'RUC',
                             dataIndex: 'numrucper',
-                            flex: 0.7,
+                            flex: 1,
                             align: 'right',
 
+                        },
+                        {
+                            xtype: 'numbercolumn',
+                            text: 'Sub Total',
+                            dataIndex: 'valventacont',
+                            flex: 1,
+                            align: 'right'
+                        },{
+                            xtype: 'numbercolumn',
+                            text: 'Impuesto',
+                            dataIndex: 'valigvcont',
+                            flex: 1,
+                            align: 'right'
+                        },
+                        {
+                            xtype: 'numbercolumn',
+                            text: 'Total',
+                            dataIndex: 'valtotalcont',
+                            flex: 1,
+                            align: 'right'
                         },
                         {
                             text: 'Estado',
@@ -92,14 +112,6 @@ Ext.define('megafilmperu.view.ventas.ListadoDeCotizaciones', {
                                     return value;
                                   }
                               }
-                        },
-                        {
-                            xtype: 'numbercolumn',
-                            text: 'Total',
-                            dataIndex: 'valtotalcont',
-                            flex: 1,
-                            //renderer: Ext.util.Format.numberRenderer('0.00'),
-                            align: 'right'
                         },
                         {
                             xtype: 'widgetcolumn',
@@ -155,8 +167,8 @@ Ext.define('megafilmperu.view.ventas.ListadoDeCotizaciones', {
                         }, {
                             xtype: 'datefield',
                             value: new Date(),
-                            reference: 'dfDesde',
-                            itemId: 'dfDesde',
+                            reference: 'dfDesdeCotizacion',
+                            itemId: 'dfDesdeCotizacion',
                             width: 100
                         },
                         {
@@ -176,8 +188,8 @@ Ext.define('megafilmperu.view.ventas.ListadoDeCotizaciones', {
                         }, {
                             xtype: 'datefield',
                             value: new Date(),
-                            reference: 'dfHasta',
-                            itemId: 'dfHasta',
+                            reference: 'dfHastaCotizacion',
+                            itemId: 'dfHastaCotizacion',
                             width: 100
                         },
                         {

@@ -481,8 +481,8 @@ Ext.define('megafilmperu.view.ventas.AccionesRegCotizacion', {
         me = this;
         _store = me.lookupReference('dgvVentas').getStore();
         _store.getProxy().extraParams = {
-            vDesde: Ext.ComponentQuery.query('#dfDesde')[0].getRawValue(),
-            vHasta: Ext.ComponentQuery.query('#dfHasta')[0].getRawValue(),
+            vDesde: Ext.ComponentQuery.query('#dfDesdeCotizacion')[0].getRawValue(),
+            vHasta: Ext.ComponentQuery.query('#dfHastaCotizacion')[0].getRawValue(),
             vPersona: ''
         };
         _store.load(1);
