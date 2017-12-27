@@ -577,6 +577,7 @@ Ext.define('megafilmperu.model.ProductoInventario', {
         {name :'nombre',type:'string'},
         {name :'stockfisico',type:'integer'},
         {name :'inventario',type:'integer'},
+        {name :'inventarioseries',type:'string'},
         {name :'diferencia',type:'integer'},
         
     ]

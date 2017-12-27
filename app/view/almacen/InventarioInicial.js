@@ -148,6 +148,14 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                   align: 'right',
                   editor :{
                     xtype:'numberfield'
+                  },
+                  renderer: function (value, metaData, record) {
+                    if(value <= 0)
+                        metaData.style = "color:red;font-Size:15px";
+                    else
+                        metaData.style = "font-Size:15px";
+
+                    return value;
                   }
                 },
                 {
@@ -157,7 +165,29 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                   align: 'right',
                   editor :{
                     xtype:'numberfield'
+                  },
+                  renderer: function (value, metaData, record) {
+                    if(value <= 0)
+                        metaData.style = "color:red;font-Size:15px";
+                    else
+                        metaData.style = "font-Size:15px";
+
+                    return value;
                   }
+                },
+                {
+                  xtype: 'widgetcolumn',
+                  width: 50,
+                  align:'center',
+                  widget: {
+                    xtype: 'button',
+                    width: 30,
+                    glyph: 0xf00e,
+                    tooltip : 'Buscar Productos',
+                    handler: 'onClickBuscarProductoSeries'
+                  }
+                  
+        
                 },
                 {
                   text: 'Diferencia',
@@ -166,6 +196,14 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                   align: 'right',
                   editor :{
                     xtype:'numberfield'
+                  },
+                  renderer: function (value, metaData, record) {
+                    if(value <= 0)
+                        metaData.style = "color:red;font-Size:15px";
+                    else
+                        metaData.style = "font-Size:15px";
+
+                    return value;
                   }
                 }
                

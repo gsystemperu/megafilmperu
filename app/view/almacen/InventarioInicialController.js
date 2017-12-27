@@ -53,6 +53,33 @@ Ext.define('megafilmperu.view.almacen.InventarioInicialController', {
           } catch (e) {
             console.log(e);
           }
+    },
+    onClickBuscarProductoSeries:function(btn){
+        r  = btn.getWidgetRecord();
+        st = this.lookupReference('dgvInvNuevo').getStore();
+        w  = Ext.create('Ext.window.Window',{
+           title : 'Listada de Productos',
+           itemId : 'wProductosUnidadesInventario',
+           width : 750 ,
+           height :600,
+           autoShow:true,
+           modal : true,
+           layout:{
+             type:'fit',
+             align:'stretch'
+           },
+           items:[
+             {
+               xtype    :'wListaSeriesInventario',
+               codigo   : r.get('id'),
+               cantidad : r.get('stockfisico'),
+               registro : r
+             }
+           ]
+        });
+ 
+        Ext.ComponentQuery.query('#txtSerieUnico')[0].focus(false,100);
+ 
     }
 
 });

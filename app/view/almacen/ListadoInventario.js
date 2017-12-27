@@ -5,7 +5,6 @@ Ext.define('megafilmperu.view.almacen.ListadoInventario', {
     requires: [
       'Ext.layout.container.HBox',
       'megafilmperu.view.almacen.ListadoInventarioController',
-      'megafilmperu.view.almacen.ListadoInventarioModel',
       'Ext.grid.*',
       'Ext.form.field.*',
       'Ext.grid.plugin.*'
@@ -23,7 +22,6 @@ Ext.define('megafilmperu.view.almacen.ListadoInventario', {
     controller: 'almacen-listadoinventario',
     initComponent: function () {
       var st = Ext.create('megafilmperu.store.InventarioRegistros');
-      console.log(st);
       var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
         clicksToMoveEditor: 1,
         autoCancel: false

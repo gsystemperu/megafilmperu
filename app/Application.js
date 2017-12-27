@@ -38,6 +38,7 @@ Ext.define('megafilmperu.Application', {
         'almacen.ContenedorFacturaProveedorImportado',
         'almacen.InventarioInicial',
         'almacen.ContenedorInventario',
+        'almacen.ListaSeriesInventario',
 
 
         'almacen.ListadoInventario',

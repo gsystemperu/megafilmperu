@@ -6,13 +6,11 @@ Ext.define('megafilmperu.view.conf.Empresa', {
     requires: [
       'Ext.form.field.*',
       'megafilmperu.util.Rutas',
-      'megafilmperu.view.conf.EmpresaController',
-  
+      'megafilmperu.view.conf.EmpresaController'
     ],
     margin: 30,
     autoScroll: true,
     controller: 'acciones-empresa',
-    submitEmptyText: false,
     url: megafilmperu.util.Rutas.actualizarEmpresa,
     layout: {
       type: 'vbox',

@@ -5,8 +5,7 @@ Ext.define('megafilmperu.view.almacen.ContenedorInventario', {
     requires: [
       'Ext.layout.container.Card',
       'megafilmperu.util.Rutas',
-      'megafilmperu.view.almacen.ContenedorInventarioController',
-      'megafilmperu.view.almacen.ContenedorInventarioModel'
+      'megafilmperu.view.almacen.ContenedorInventarioController'
     ],
     layout: {
       type: 'card',
