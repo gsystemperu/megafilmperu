@@ -204,6 +204,7 @@ class Producto extends \Phalcon\Mvc\Model
      * @return [type] Json      [description]
      */
     public static function inventarioAgregar($data){
+        die();
         $obj     = new SQLHelpers();
         $param   = $data;
         $sql     = $obj->executar('inventario','sp_inventario_agregar',$param);

@@ -17,12 +17,13 @@ Ext.define('megafilmperu.view.almacen.InventarioInicialController', {
             st = this.lookupReference('dgvInvNuevo').getStore();
             me = this;
             st.each(function (re) {
-                console.log(re);
                    reg = {
                         "idprod"     : re.get('id'),
                         "stockfisico": re.get('stockfisico'),
                         "inventario": re.get("inventario"),
-                        "diferencia": re.get("diferencia")                   
+                        "diferencia": re.get("diferencia"),
+                        "generaserie" : re.get("chk"),
+                        "inventarioseries": JSON.parse("[" + re.get("inventarioseries") + "]" )
                     };
                     d.push(reg);
             });

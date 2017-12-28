@@ -80,39 +80,64 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                   
                 },
                 {
-                  xtype: 'label',
-                  text :'Referencia',
-                  style: {
-                    color: '#775c80',
-                    textAlign: 'left',
-                    fontWeight: 'bold',
-                    fontSize: '20px'
+                  xtype:'container',
+                  layout:{
+                    type:'hbox',
+                    align:'stretch'
                   },
-                  padding : '5 0 5 0',
-                  
-                },
-                 {
-                   xtype:'textfield',
-                   name : 'referencia',
-                   fieldStyle : 'font-size:20px;font-weight:bold;',
-                   padding : '5 0 5 0'
-                 },
-                 {
-                  xtype: 'label',
-                  text :'Fecha',
-                  style: {
-                    color: '#775c80',
-                    textAlign: 'left',
-                    fontWeight: 'bold',
-                    fontSize: '20px'
+                  defaults:{
+                    flex: 1
                   },
+                  items:[
+                    {
+                      xtype: 'label',
+                      text :'Referencia',
+                      style: {
+                        color: '#775c80',
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        fontSize: '20px'
+                      },
+                      padding : '5 0 5 0',
+                      
+                    },
+                    {
+                      xtype: 'label',
+                      text :'Fecha',
+                      style: {
+                        color: '#775c80',
+                        textAlign: 'left',
+                        fontWeight: 'bold',
+                        fontSize: '20px'
+                      },
+                    },
+                  ]
                 },
-                 {
-                   xtype:'datefield',
-                   name : 'fechainventario',
-                   value : new Date()
-                   
-                 }
+                {
+                  xtype:'container',
+                  layout:{
+                    type:'hbox',
+                    align:'stretch'
+                  },
+                  defaults:{
+                    flex: 1
+                  },
+                  items:[
+                    {
+                      xtype:'textfield',
+                      name : 'referencia',
+                      fieldStyle : 'font-size:20px;font-weight:bold;',
+                    },
+                    {
+                      xtype:'datefield',
+                      name : 'fechainventario',
+                      value : new Date()
+                      
+                    }
+                  ]
+                },
+                
+                 
               ]
 
             };
@@ -139,7 +164,7 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                 {
                   text: 'Producto',
                   dataIndex: 'nombre',
-                  flex: 2,
+                  flex: 2.5,
                   align: 'left'
                 }, {
                   text: 'Stock',
@@ -186,8 +211,6 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
                     tooltip : 'Buscar Productos',
                     handler: 'onClickBuscarProductoSeries'
                   }
-                  
-        
                 },
                 {
                   text: 'Diferencia',
@@ -205,53 +228,19 @@ Ext.define('megafilmperu.view.almacen.InventarioInicial', {
 
                     return value;
                   }
+                },
+                {
+                  text : 'Genera Serie?',
+                  xtype:'checkcolumn',
+                  flex : 1,
+                  dataIndex: 'chk',
                 }
                
               ],
               listeners: {
                 edit: 'onEditorCalcularDiferencia'
-              },
-              tbar: [
-                
-                  {
-                  xtype: 'fieldset',
-                  layout: 'hbox',
-                  flex: 1,
-                  padding: '5 5 5 5',
-                  defaults: {
-                    labelWidth: 50,
-                    xtype:'label'
-                  },
-                  items: [
-                    {
-                      text :'Nombre',
-                      padding: '5px 0 0 0',
-                      border: false,
-                      width: 100,height: 25,
-                      buscar:'nombre',
-                      style: {
-                        background: '#775c80',
-                        color: 'white',
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                        fontSize: '13px'
-                      }
-                   },
-                    {
-                      xtype: 'textfield',
-                      reference: 'txtBuscarNombreProductoInventario',
-                      flex: 3,
-                      enableKeyEvents: true,
-                      listeners:{
-                        keyup:'onKeyUpBuscarProducto'
-                      },
-                      fieldStyle : 'font-size:15px;font-weight:bold;'
-                    }
-                  ]
-
-                },
-  
-              ]
+              }
+              
             }]
           };
         }
