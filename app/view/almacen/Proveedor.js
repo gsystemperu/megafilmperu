@@ -155,6 +155,11 @@ Ext.define('megafilmperu.view.almacen.Proveedor', {
                         itemId :'txtRazonSocial'
                     },
                     {
+                      fieldLabel:'R.U.C / D.n.i',
+                      allowBlank : false,
+                      name : 'rucdni',
+                    },
+                    {
                         fieldLabel:'Contacto',
                         name :'contacto'
 
@@ -164,6 +169,11 @@ Ext.define('megafilmperu.view.almacen.Proveedor', {
                         name :'telefono'
 
                     },
+                    {
+                      fieldLabel:'Correo',
+                      name :'correo'
+
+                   },
                     {
                         xtype:'textarea',
                         fieldLabel:'Direccion',

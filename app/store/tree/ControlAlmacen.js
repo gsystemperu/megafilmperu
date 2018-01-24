@@ -32,27 +32,6 @@ Ext.define('megafilmperu.store.tree.ControlAlmacen', {
         expanded: true,
          children: [
           {
-            text: 'Orden Compra',
-            leaf: true,
-            itemId: "wContenedorOrdenCompra",
-            titulo: "Orden Compra",
-            glyph : 'xf16b'
-          },
-          {
-            text: 'Factura Nacionales',
-            leaf: true,
-            itemId: "wContenedorFacturaProveedor",
-            titulo: "Factura Nacionales",
-            glyph : 'xf16b'
-          },
-          {
-            text: 'Factura Importacion',
-            leaf: true,
-            itemId: "wContenedorFacturaProveedorImportado",
-            titulo: "Factura Importacion",
-            glyph : 'xf16b'
-          },
-          {
             text: 'Guias Entrada',
             leaf: true,
             itemId: "wContenedorGuias",

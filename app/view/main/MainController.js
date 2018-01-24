@@ -27,93 +27,23 @@ Ext.define('megafilmperu.view.main.MainController', {
      * Expande el panel y Genera un DASHBOARD del Menú
      */
 
-    this.lookupReference('')
-    switch (pan.itemId) {
-      case "panControlVentas":
-        _panel = this.getView().down('tabpanel');
-        if (!_panel.getChildByElement(pan.itemId)) {
-          _panel.add({
-            title: 'Control de Ventas',
-            closable: true,
-            flex: 1,
-            id: pan.itemId
-          });
-
-        }
-        _panel.setActiveTab(pan.itemId);
-
-        break;
-      case "panFinanzas":
-        _panel = this.getView().down('tabpanel');
-        if (!_panel.getChildByElement(pan.itemId)) {
-          _panel.add({
-            title: 'Finanzas',
-            closable: true,
-            flex: 1,
-            id: pan.itemId
-          });
-
-        }
-        _panel.setActiveTab(pan.itemId);
-
-        break;
-      case "panRecursosHumanos":
-        _panel = this.getView().down('tabpanel');
-        if (!_panel.getChildByElement(pan.itemId)) {
-          _panel.add({
-            title: 'Recursos Humanos',
-            closable: true,
-            flex: 1,
-            id: pan.itemId
-          });
-
-        }
-        _panel.setActiveTab(pan.itemId);
-        break;
-      case "panFacturaElectronica":
-        _panel = this.getView().down('tabpanel');
-        if (!_panel.getChildByElement(pan.itemId)) {
-          _panel.add({
-            title: 'Factura Electronica',
-            closable: true,
-            flex: 1,
-            id: pan.itemId
-          });
-
-        }
-        _panel.setActiveTab(pan.itemId);
-        break;
+    console.log(pan.itemId);
+    switch (pan.itemId) 
+    {
       case "panControlAlmacen":
-        _panel = this.getView().down('tabpanel');
+        _panel =  this.lookupReference('tabPrincipal')
+        _panel.removeAll();
         if (!_panel.getChildByElement(pan.itemId)) {
           _panel.add({
-            title: 'Control Almacen',
+            title: 'DashBoard Almacen',
             closable: true,
-            id: pan.itemId,
-            items: [{
-              xtype: 'DashBoardCrm'
-            }]
+            flex: 1,
+            items: [{xtype:'dashboardalmacen'}]
           });
 
         }
-        _panel.setActiveTab(pan.itemId);
-
         break;
-        /* case "panMantenimiento":
-             _panel = this.getView().down('tabpanel');
-             if (!_panel.getChildByElement(pan.itemId)) {
-                 _panel.add({
-                     title: 'Mantenimientos',
-                     closable: true,
-                     id: pan.itemId,
-                     items: [{ xtype: 'DashBoardCrm' }]
-                 });
-
-             }
-             _panel.setActiveTab(pan.itemId);
-
-             break;*/
-
+    
 
 
     }
@@ -144,8 +74,8 @@ Ext.define('megafilmperu.view.main.MainController', {
     _ref.treeMantenimiento.setStore(store);
     var store = Ext.create('megafilmperu.store.tree.ControlUsuarios');
     _ref.treeControlUsuarios.setStore(store);
-   // var store = Ext.create('megafilmperu.store.tree.ControlContabilidad');
-   // _ref.treeControlContabilidad.setStore(store);
+    var store = Ext.create('megafilmperu.store.tree.ControlCompras');
+    _ref.treeControlCompras.setStore(store);
 
 
 
@@ -154,13 +84,15 @@ Ext.define('megafilmperu.view.main.MainController', {
 
     _view = record.get("itemId");
     _tit = record.get("titulo");
-    _panel = this.getView().down('tabpanel');
+    _panel =  this.lookupReference('tabPrincipal');   // this.getView().down('tabpanel');
+    
     try {
+      _panel.removeAll();
       if(_tit == ''){return 0;}
       if (!_panel.getChildByElement(_view)) {
         _panel.add({
           title: _tit,
-          closable: true,
+          closable: false,
           id: _view,
           itemId: _view,
           layout: 'fit',
@@ -171,7 +103,8 @@ Ext.define('megafilmperu.view.main.MainController', {
         });
 
       }
-      if(_tit=='Factura'){
+
+     /* if(_tit=='Factura'){
         if(_panel.getChildByElement('wContenedorPuntoVentaB')){
           _panel.remove('wContenedorPuntoVentaB');
         }
@@ -191,8 +124,8 @@ Ext.define('megafilmperu.view.main.MainController', {
         if(_panel.getChildByElement('wContenedorFacturaProveedor')){
           _panel.remove('wContenedorFacturaProveedor');
         }
-      }
-      _panel.setActiveTab(_view);
+      }*/
+      //_panel.setActiveTab(_view);
     } catch (err) {
       console.info(err);
     }

@@ -75,7 +75,8 @@ Ext.define('megafilmperu.Application', {
         'puntoventa.ListaSeriesFraccion',
 
         'contabilidad.frmTipoCambio',
-        'seguridad.Login'
+        'seguridad.Login',
+        'megafilmperu.view.dashboard.Almacen'
 
     ],
 

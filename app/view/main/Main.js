@@ -43,6 +43,7 @@ Ext.define('megafilmperu.view.main.Main', {
         title: 'Control de Almacen',
         itemId: 'panControlAlmacen', //'panGestionCliente',
         iconCls: 'fa fa-dropbox',
+        listeners: [{ expand: 'onExpandPanel' }],
         bodyPadding: 0,
         items: [{
           xtype: 'menutree',
@@ -55,11 +56,12 @@ Ext.define('megafilmperu.view.main.Main', {
         }]
 
 
-      }, {
+      }, 
+      {
         title: 'Control de Ventas',
         itemId: 'panControlVentas',
         iconCls: 'fa fa-line-chart',
-        //listeners: [{ expand: 'onExpandPanel' }],
+    
         items: [{
           xtype: 'menutree',
           reference: 'treeControlVentas',
@@ -71,14 +73,14 @@ Ext.define('megafilmperu.view.main.Main', {
         }]
 
       },
-     /* {
-        title: 'Contabilidad',
-        itemId: 'panContabilidad',
-        iconCls: 'fa fa-server',
+      {
+        title: 'Control de Compras',
+        itemId: 'panCompras',
+        iconCls: 'fa fa-bullhorn',
         //listeners: [{ expand: 'onExpandPanel' }],
         items: [{
           xtype: 'menutree',
-          reference: 'treeControlContabilidad',
+          reference: 'treeControlCompras',
           layout: 'fit',
           rootVisible: true,
           listeners: {
@@ -86,7 +88,7 @@ Ext.define('megafilmperu.view.main.Main', {
           }
         }]
         
-      },*/
+      },
       {
         title: 'Reportes - Listados',
         itemId: 'panReportesListados',
@@ -117,10 +119,10 @@ Ext.define('megafilmperu.view.main.Main', {
     }, {
       region: 'center',
       padding: 5,
-      xtype: 'tabpanel',
-      itemId: 'tabPrincipal',
+      reference: 'tabPrincipal',
       activeTab: 0,
       plain: true,
+      layout:'fit',
       defaults: {
         bodyPadding: 5,
         scrollable: true

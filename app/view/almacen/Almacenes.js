@@ -52,6 +52,11 @@ Ext.define('megafilmperu.view.almacen.Almacenes', {
             flex: 2
           },
           {
+            text: 'Principal',
+            dataIndex: 'principal',
+            flex: 0.5
+          },
+          {
             xtype: 'widgetcolumn',
             flex: 0.5,
             widget: {
@@ -88,7 +93,10 @@ Ext.define('megafilmperu.view.almacen.Almacenes', {
           fieldLabel: 'Descripcion',
           name: 'descripcion',
           itemId: 'txtNombreAlmacen'
-
+        },{
+          xtype:'checkbox',
+          boxLabel : 'Almacen Principal',
+          labelAlign : 'left' 
         }],
         bbar: [{
           xtype: 'button',

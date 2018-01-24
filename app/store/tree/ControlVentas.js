@@ -26,13 +26,13 @@ Ext.define('megafilmperu.store.tree.ControlVentas', {
                 titulo : '',
                 children: [
                  {
-                   text: 'Factura',
+                   text: 'Registrar Factura',
                    leaf: true,
                    itemId: "wContenedorPuntoVenta",
                    titulo: "Factura" , glyph : 'xf022'
                  },
                  {
-                   text: 'Boleta',
+                   text: 'Registrar Boleta',
                    leaf: true,
                    itemId: "wContenedorPuntoVentaB",
                    titulo: "Boleta" , glyph : 'xf022'
